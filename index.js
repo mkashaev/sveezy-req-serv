@@ -14,10 +14,11 @@ app.get('/', async (req, res) => {
   const text = `Text: ${form}`
   const URL = `https://api.telegram.org/bot${config.TOKEN}/sendMessage?chat_id=${config.CHAT_ID}&text=${text}`
   try {
-    await axios.get(URL, { timeout: 4 * 1000 })
-    res.send("It is ok!")
+    await axios.get(URL, { timeout: 20 * 1000 })
+    res.send("Message is sent!")
   } catch (err) {
     console.log("Error: ", err.message)
+    res.send(`Error: ${err.message}`)
   }
 })
 
