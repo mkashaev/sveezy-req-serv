@@ -9,7 +9,11 @@ const port = process.env.PORT || 5000
 const config = require('./config.js')()
 
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
+  res.send("Hi :)")
+})
+
+app.get('/form', async (req, res) => {
   const form = req.query.form
   const text = `Text: ${form}`
   const URL = `https://api.telegram.org/bot${config.TOKEN}/sendMessage?chat_id=${config.CHAT_ID}&text=${text}`
