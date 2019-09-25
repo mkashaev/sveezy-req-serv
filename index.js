@@ -2,11 +2,12 @@
 const express = require('express')
 const axios = require('axios')
 const app = express()
-const port = process.env.PORT || 5000
-
-// config.TOKEN
-// config.CHAT_ID
 const config = require('./config.js')()
+
+const port = process.env.PORT || 5000
+const token = process.env.TOKEN || config.TOKEN
+const chatId = process.env.CHAT_ID || config.CHAT_ID
+
 
 
 app.get('/', (req, res) => {
@@ -16,7 +17,8 @@ app.get('/', (req, res) => {
 app.get('/form', async (req, res) => {
   const form = req.query.form
   const text = `Text: ${form}`
-  const URL = `https://api.telegram.org/bot${config.TOKEN}/sendMessage?chat_id=${config.CHAT_ID}&text=${text}`
+  const URL = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${text}`
+  
   try {
     await axios.get(URL, { timeout: 20 * 1000 })
     res.send("Message is sent!")
