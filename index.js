@@ -2,7 +2,7 @@
 const express = require('express')
 const axios = require('axios')
 const app = express()
-const config = require('./config.js')()
+const config = require('./config-example.js')()
 
 const port = process.env.PORT || 5000
 const token = process.env.TOKEN || config.TOKEN
